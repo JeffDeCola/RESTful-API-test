@@ -9,27 +9,27 @@
 
 A RESTful API test using go, gin &amp; gorp
 
-# RUN
+## RUN
 go run main.go
 
-# USE HTTP CLI
+## USE HTTP CLI
 
-## CHECK BODY
+### CHECK BODY
 ```bash
 http localhost:8000/ --body
 ```
 
-##CREATE NEW ARTICLE
+### CREATE NEW ARTICLE
 ```bash
-$ http POST localhost:8000/articles title="A simple API in Go" content="This is my content"
+http POST localhost:8000/articles title="A simple API in Go" content="This is my content"
 ```
 
-##QUERY ENTIRE LIST
+### QUERY ENTIRE LIST
 ```bash
 http localhost:8000/articles
 ```
 
-QUERY SINGLE RESOURCE
+### QUERY SINGLE RESOURCE
 ```bash
 http localhost:8000/articles/1
 ```
