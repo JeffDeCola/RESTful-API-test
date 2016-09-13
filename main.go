@@ -11,6 +11,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+// The database
 var dbmap = initDb()
 
 func main() {
@@ -86,6 +87,7 @@ func ArticlePost(c *gin.Context) {
 	}
 }
 
+// CREATE A DATABASE
 func initDb() *gorp.DbMap {
 	db, err := sql.Open("sqlite3", "db.sqlite3")
 	checkErr(err, "sql.Open failed")
