@@ -31,6 +31,11 @@ jobs:
     plan:
       - get: RESTful-API-test
         trigger: true
+      - put: resource-slack-alert
+        params:
+          channel: '#general'
+          text: |
+            From RESTful-API-test: Starting RESTful-API-test in concourse.
       - put: resource-repo-status
         params: { state: "pending", commit: "RESTful-API-test" }
       - task: task-unit-tests
