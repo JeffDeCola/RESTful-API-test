@@ -39,7 +39,7 @@ jobs:
       - put: resource-repo-status
         params: { state: "pending", commit: "RESTful-API-test" }
       - task: task-unit-tests
-        file: RESTful-API-test/task-build.yml
+        file: RESTful-API-test/ci/tasks/task-unit-tests.yml
         on_success:
           put: resource-repo-status
           params: { state: "success", commit: "RESTful-API-test" }
