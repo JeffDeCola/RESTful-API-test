@@ -1,0 +1,53 @@
+resource_types:
+  - name: slack-notification
+    type: docker-image
+    source:
+      repository: cfcommunity/slack-notification-resource
+      tag: latest
+  - name: github-status
+    type: docker-image
+    source:
+      repository: dpb587/github-status-resource
+      tag: master
+
+resources:
+  - name: RESTful-API-test
+    type: git
+    source:
+      uri: https://github.com/jeffdecola/RESTful-API-test
+      branch: master
+  - name: resource-slack-alert
+    type: slack-notification
+    source:
+      url: {{slack_url}} 
+  - name: resource-repo-status 
+    type: github-status
+    source:
+      repository: jeffdecola/RESTful-API-test 
+      access_token: {{repo_github_token}}
+
+jobs:
+  - name: job-test-app-hello
+    plan:
+      - get: RESTful-API-test
+        trigger: true
+      - put: resource-repo-status
+        params: { state: "pending", commit: "RESTful-API-test" }
+      - task: task-unit-tests
+        file: RESTful-API-test/task-build.yml
+        on_success:
+          put: resource-repo-status
+          params: { state: "success", commit: "RESTful-API-test" }
+          put: resource-slack-alert
+          params:
+            channel: '#general'
+            text: |
+              From RESTful-API-test: This works great!
+        on_failure:
+          put: resource-repo-status
+          params: { state: "failure", commit: "RESTful-API-test" }
+          put: resource-slack-alert
+          params:
+            channel: '#general'
+            text: |
+              From RESTful-API-test: Something went wrong!
