@@ -39,7 +39,7 @@ func createArticle(title, body string) Article {
 	}
 
 	err := dbmap.Insert(&article)
-	checkErr(err, "Insert failed")
+	checkErr(err, "Insert failed - sorry")
 	return article
 }
 
