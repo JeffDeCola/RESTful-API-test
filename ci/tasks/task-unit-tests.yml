@@ -10,4 +10,4 @@ inputs:
 - name: RESTful-API-test
 
 run:
-  path: ./ci/scripts/unit-tests.sh
+  path: ./RESTful-API-test/ci/scripts/unit-tests.sh
