@@ -27,7 +27,7 @@ resources:
       access_token: {{repo_github_token}}
 
 jobs:
-  - name: job-test-app-hello
+  - name: job-test-app-RESTful
     plan:
       - get: RESTful-API-test
         trigger: true

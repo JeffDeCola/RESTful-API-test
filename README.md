@@ -8,7 +8,10 @@
 
 
 A RESTful API test using go, gin &amp; gorp
+
 (I'm using it for testing, inspiration from https://github.com/phalt)
+
+----
 
 ## RUN
 go run main.go
