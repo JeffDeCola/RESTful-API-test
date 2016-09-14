@@ -1,31 +1,4 @@
-resource_types:
-  - name: slack-notification
-    type: docker-image
-    source:
-      repository: cfcommunity/slack-notification-resource
-      tag: latest
-  - name: github-status
-    type: docker-image
-    source:
-      repository: dpb587/github-status-resource
-      tag: master
-
-resources:
-  - name: RESTful-API-test
-    type: git
-    source:
-      uri: https://github.com/jeffdecola/RESTful-API-test
-      branch: master
-  - name: resource-slack-alert
-    type: slack-notification
-    source:
-      url: {{slack_url}} 
-  - name: resource-repo-status 
-    type: github-status
-    source:
-      repository: jeffdecola/RESTful-API-test 
-      access_token: {{repo_github_token}}
-
+# pipeline 
 jobs:
   - name: job-test-app-RESTful
     plan:
@@ -56,3 +29,32 @@ jobs:
             channel: '#general'
             text: |
               From RESTful-API-test: Something went wrong!
+
+resource_types:
+  - name: slack-notification
+    type: docker-image
+    source:
+      repository: cfcommunity/slack-notification-resource
+      tag: latest
+  - name: github-status
+    type: docker-image
+    source:
+      repository: dpb587/github-status-resource
+      tag: master
+
+resources:
+  - name: RESTful-API-test
+    type: git
+    source:
+      uri: https://github.com/jeffdecola/RESTful-API-test
+      branch: master
+  - name: resource-slack-alert
+    type: slack-notification
+    source:
+      url: {{slack_url}} 
+  - name: resource-repo-status 
+    type: github-status
+    source:
+      repository: jeffdecola/RESTful-API-test 
+      access_token: {{repo_github_token}}
+
