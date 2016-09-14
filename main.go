@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/JeffDeCola/RESTful-API-test/http"
 	"github.com/gin-gonic/gin"
-	"github.com/jeffdecola/RESTful-API-test/http"
 	_ "github.com/mattn/go-sqlite3"
 )
 
