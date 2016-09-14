@@ -1,4 +1,5 @@
 # pipeline 
+
 jobs:
   - name: job-test-app-RESTful
     plan:
@@ -6,29 +7,28 @@ jobs:
         trigger: true
       - put: resource-slack-alert
         params:
-          channel: '#general'
-          text: |
-            From RESTful-API-test: Starting RESTful-API-test in concourse.
+          channel: '#jeff-builds'
+          text: "From RESTful-API-test: Starting RESTful-API-test in concourse."
       - put: resource-repo-status
         params: { state: "pending", commit: "RESTful-API-test" }
       - task: task-unit-tests
         file: RESTful-API-test/ci/tasks/task-unit-tests.yml
         on_success:
-          put: resource-repo-status
-          params: { state: "success", commit: "RESTful-API-test" }
-          put: resource-slack-alert
-          params:
-            channel: '#general'
-            text: |
-              From RESTful-API-test: This works great!
+          do:
+          - put: resource-repo-status
+            params: { state: "success", commit: "RESTful-API-test" }
+          - put: resource-slack-alert
+            params:
+              channel: '#jeff-builds'
+              text: "From RESTful-API-test: This works great!!"
         on_failure:
-          put: resource-repo-status
-          params: { state: "failure", commit: "RESTful-API-test" }
-          put: resource-slack-alert
-          params:
-            channel: '#general'
-            text: |
-              From RESTful-API-test: Something went wrong!
+          do:
+          - put: resource-repo-status
+            params: { state: "failure", commit: "RESTful-API-test" }
+          - put: resource-slack-alert
+            params:
+              channel: '#jeff-builds'
+              text: "From RESTful-API-test: Something went wrong!"
 
 resource_types:
   - name: slack-notification
