@@ -16,7 +16,7 @@ A RESTful API test using go, gin &amp; gorp
 ## RUN
 go run main.go
 
-## USE A HTTP CLI (like httpie)
+## USE A CLI HTTP CLIENT (like httpie)
 
 ### CHECK BODY
 ```bash
