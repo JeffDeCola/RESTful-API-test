@@ -1,4 +1,4 @@
-# pipeline 
+# RESTful-API-test pipeline 
 
 jobs:
   - name: job-test-app-RESTful

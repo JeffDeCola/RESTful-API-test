@@ -14,26 +14,31 @@ A RESTful API test using go, gin &amp; gorp
 ----
 
 ## RUN
+
 go run main.go
 
 ## USE A CLI HTTP CLIENT (like httpie)
 
 ### CHECK BODY
+
 ```bash
 http localhost:8000/ --body
 ```
 
 ### CREATE NEW ARTICLE
+
 ```bash
 http POST localhost:8000/articles title="A simple API in Go" content="This is my content"
 ```
 
 ### QUERY ENTIRE LIST - Returns all articles in the list
+
 ```bash
 http localhost:8000/articles
 ```
 
 ### QUERY SINGLE RESOURCE - Get back single article via it's id
+
 ```bash
 http localhost:8000/articles/1
 ```
