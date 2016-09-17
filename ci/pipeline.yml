@@ -13,6 +13,7 @@ jobs:
         params: { state: "pending", commit: "RESTful-API-test" }
       - task: task-unit-tests
         file: RESTful-API-test/ci/tasks/task-unit-tests.yml
+      - put: resource-jeffs-template
         on_success:
           do:
           - put: resource-repo-status
@@ -41,6 +42,11 @@ resource_types:
     source:
       repository: dpb587/github-status-resource
       tag: master
+  - name: jeffs-resource
+    type: docker-image
+    source:
+      repository: jeffdecola/resource-template
+      tag: latest
 
 resources:
   - name: RESTful-API-test
@@ -57,4 +63,8 @@ resources:
     source:
       repository: jeffdecola/RESTful-API-test 
       access_token: {{repo_github_token}}
+  - name: resource-jeffs-template
+    type: jeffs-resource
+
+
 
