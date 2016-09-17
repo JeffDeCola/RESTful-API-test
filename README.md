@@ -1,23 +1,27 @@
 # RESTful-API-test
 
 [![Code Climate](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/badges/gpa.svg)](https://codeclimate.com/github/JeffDeCola/RESTful-API-test)
-[![Issue Count](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/badges/issue_count.svg)](https://codeclimate.com/github/JeffDeCola/RESTful-API-test)
+[![Issue Count](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/badges/issue_count.svg)](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/issues)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://jeffdecola.mit-license.org)
 [![Go Report Card](https://goreportcard.com/badge/jeffdecola/RESTful-API-test)](https://goreportcard.com/report/jeffdecola/RESTful-API-test)
 [![GoDoc](https://godoc.org/github.com/JeffDeCola/RESTful-API-test?status.svg)](https://godoc.org/github.com/JeffDeCola/RESTful-API-test)
 
 
-A RESTful API test using go, gin &amp; gorp
+`RESTful-API-test` is a very limited RESTful API.
 
-(I'm using it for testing, inspiration from https://github.com/phalt)
+Written in go using gin &amp; gorp.
+
+It is unit tested and built using concourse ci.
+
+(Original Code from https://github.com/phalt)
 
 ----
 
-## RUN
+## USAGE
 
 go run main.go
 
-## USE A CLI HTTP CLIENT (like httpie)
+In another terminal, use a cli http client like httpie.
 
 ### CHECK BODY
 
@@ -42,3 +46,11 @@ http localhost:8000/articles
 ```bash
 http localhost:8000/articles/1
 ```
+
+## CONCOURSE CI
+
+A concourse ci pipeline is used to unit test.
+
+![IMAGE - hello-go concourse ci piepline - IMAGE](docs/RESTful-API-test-pipeline.jpg)
+
+A /ci/.credentials file needs to be created for your slack_url and repo_github_token.
