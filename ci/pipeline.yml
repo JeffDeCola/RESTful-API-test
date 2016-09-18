@@ -21,7 +21,7 @@ jobs:
             channel: '#jeff-builds'
             text: "From RESTful-API-test: PASSED job-unit-tests in concourse ci."
         - put: resource-repo-status
-          params: { state: "pending", description: "PASSED job-unit-tests in concourse ci", commit: "RESTful-API-test" }
+          params: { state: "success", description: "PASSED job-unit-tests in concourse ci", commit: "RESTful-API-test" }
       on_failure:
         do:
         - put: resource-slack-alert
