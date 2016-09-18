@@ -2,29 +2,27 @@
 
 [![Code Climate](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/badges/gpa.svg)](https://codeclimate.com/github/JeffDeCola/RESTful-API-test)
 [![Issue Count](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/badges/issue_count.svg)](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/issues)
-[![License](http://img.shields.io/:license-mit-blue.svg)](http://jeffdecola.mit-license.org)
 [![Go Report Card](https://goreportcard.com/badge/jeffdecola/RESTful-API-test)](https://goreportcard.com/report/jeffdecola/RESTful-API-test)
 [![GoDoc](https://godoc.org/github.com/JeffDeCola/RESTful-API-test?status.svg)](https://godoc.org/github.com/JeffDeCola/RESTful-API-test)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://jeffdecola.mit-license.org)
 
 
 `RESTful-API-test` is a very limited RESTful API in which you can GET
-and POST data.
+and POST data via a CLI http client from a database.
 
 Written in go using gin &amp; gorp.
 
-It is unit tested and built using concourse ci.
+Original Code from https://github.com/phalt
 
-(Original Code from https://github.com/phalt)
+## RUN
 
-----
-
-## USAGE
+From Command line
 
 ```bash
 go run main.go
 ```
 
-In another terminal, use a cli http client like httpie.
+In another terminal, use a CLI http client like httpie and you can do the following commands:
 
 ### Check Body
 
@@ -35,7 +33,7 @@ http localhost:8000/ --body
 ### Create New Article
 
 ```bash
-http POST localhost:8000/articles title="A simple API in Go" content="This is my content"
+http POST localhost:8000/articles title="A simple RESTful-API-test" content="Hello-World"
 ```
 
 ### Query Entry List - Returns all articles in the list
@@ -50,22 +48,29 @@ http localhost:8000/articles
 http localhost:8000/articles/1
 ```
 
-## BUILT USING CONCOURSE CI
+## UNIT TEST USING CONCOURSE CI
 
-A concourse ci pipeline is used to unit test.
+To automate unit_testing a concourse ci pipeline is used.
 
 ![IMAGE - hello-go concourse ci piepline - IMAGE](docs/RESTful-API-test-pipeline.jpg)
 
-A /ci/.credentials file needs to be created for your slack_url and repo_github_token.
+A _/ci/.credentials_ file needs to be created for your _slack_url_ and _repo_github_token_.
 
-## OTHER RESOURCES IN PIPELINE
+Use fly to upload the the pipeline file _ci/pipline.yml_ to concourse:
 
-`RESTful-API-test` also contains a few extra concourse resources in the pipeline:
+```bash
+fly -t ci set-pipeline -p RESTful-API-test -c ci/pipeline.yml --load-vars-from ci/.credentials.yml
+```
 
-* A resource that will notify slack on your progress.
-* A resource that will update your git status.
-* A resource [`resource-template`](https://github.com/JeffDeCola/resource-template)
-  that can be used as a starting point/template for creating other concourse
+## CONCOURSE RESOURCES IN PIPELINE
+
+As seen in the pipeline diagram,`RESTful-API-test` also contains a few extra concourse resources:
+
+* A resource (_resource-slack-alert_) that will notify slack on your progress.
+* A resource (_resource-repo-status_) that will update your git status for that
+  particular commit.
+* A resource ([_`resource-template`_](https://github.com/JeffDeCola/resource-template))
+  that can be used as a starting point and template for creating other concourse
   ci resources.
 
 These resources can be easily removed from the pipeline.

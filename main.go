@@ -8,9 +8,6 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-// The database
-// var dbmap = initDb()
-
 func main() {
 
 	var dbmap = http.InitDb()
