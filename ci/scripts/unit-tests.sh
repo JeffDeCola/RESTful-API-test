@@ -12,7 +12,7 @@ export GOPATH=$PWD
 
 # Now we must move our code from the current directory ./RESTful-API-test to $GOPATH/src/github.com/JeffDeCola/RESTful-API-test
 mkdir -p src/github.com/JeffDeCola/
-cp -R ./RESTful-API-test /src/github.com/JeffDeCola/.
+cp -R ./RESTful-API-test src/github.com/JeffDeCola/.
 
 # All set and everything is in the right place for go
 echo "Gopath is: " $GOPATH
