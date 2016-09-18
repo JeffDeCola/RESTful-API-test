@@ -12,7 +12,7 @@ and POST data via a CLI http client from a database.
 
 Written in go using gin &amp; gorp.
 
-Original Code from https://github.com/phalt
+Original go code from https://github.com/phalt
 
 ## RUN
 
@@ -24,25 +24,19 @@ go run main.go
 
 In another terminal, use a CLI http client like httpie and you can do the following commands:
 
-### Check Body
-
-```bash
-http localhost:8000/ --body
-```
-
-### Create New Article
+* Create New Article
 
 ```bash
 http POST localhost:8000/articles title="A simple RESTful-API-test" content="Hello-World"
 ```
 
-### Query Entry List - Returns all articles in the list
+* Query Entry List - Returns all articles in the list
 
 ```bash
 http localhost:8000/articles
 ```
 
-### Query Single Resource - Get back single article via it's id
+* Query Single Resource - Get back single article via it's id
 
 ```bash
 http localhost:8000/articles/1
