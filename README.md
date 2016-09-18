@@ -8,7 +8,7 @@
 
 
 `RESTful-API-test` is a very limited RESTful API in which you can GET
-and POST data via a CLI http client from a database.
+and POST data from a database via a CLI http client.
 
 Written in go using gin &amp; gorp.
 
@@ -24,19 +24,19 @@ go run main.go
 
 In another terminal, use a CLI http client like httpie and you can do the following commands:
 
-* Create New Article
+**Create New Article**
 
 ```bash
 http POST localhost:8000/articles title="A simple RESTful-API-test" content="Hello-World"
 ```
 
-* Query Entry List - Returns all articles in the list
+**Query Entry List - Returns all articles in the list**
 
 ```bash
 http localhost:8000/articles
 ```
 
-* Query Single Resource - Get back single article via it's id
+**Query Single Resource - Get back single article via it's id**
 
 ```bash
 http localhost:8000/articles/1
@@ -44,7 +44,7 @@ http localhost:8000/articles/1
 
 ## UNIT TEST USING CONCOURSE CI
 
-To automate unit_testing a concourse ci pipeline is used.
+To automate unit_testing, a concourse ci pipeline is used.
 
 ![IMAGE - hello-go concourse ci piepline - IMAGE](docs/RESTful-API-test-pipeline.jpg)
 

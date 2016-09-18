@@ -1,70 +1,70 @@
 # RESTful-API-test pipeline.yml
 
 jobs:
-  - name: job-test-app-RESTful
-    plan:
-      - get: RESTful-API-test
-        trigger: true
-      - put: resource-slack-alert
-        params:
-          channel: '#jeff-builds'
-          text: "From RESTful-API-test: Starting RESTful-API-test in concourse."
-      - put: resource-repo-status
-        params: { state: "pending", commit: "RESTful-API-test" }
-      - task: task-unit-tests
-        file: RESTful-API-test/ci/tasks/task-unit-tests.yml
-      - put: resource-jeffs-template
-        on_success:
-          do:
-          - put: resource-repo-status
-            params: { state: "success", commit: "RESTful-API-test" }
-          - put: resource-slack-alert
-            params:
-              channel: '#jeff-builds'
-              text: "From RESTful-API-test: This works great!!"
-        on_failure:
-          do:
-          - put: resource-repo-status
-            params: { state: "failure", commit: "RESTful-API-test" }
-          - put: resource-slack-alert
-            params:
-              channel: '#jeff-builds'
-              text: "From RESTful-API-test: Something went wrong!"
+- name: job-unit-tests
+  plan:
+    - get: RESTful-API-test
+      trigger: true
+    - put: resource-slack-alert
+      params:
+        channel: '#jeff-builds'
+        text: "From RESTful-API-test: STARTED job-unit-tests in concourse ci."
+    - put: resource-repo-status
+      params: { state: "pending", description: "STARTED job-unit-tests in concourse ci.", commit: "RESTful-API-test" }
+    - task: task-unit-tests
+      file: RESTful-API-test/ci/tasks/task-unit-tests.yml
+    - put: resource-template
+      on_success:
+        do:
+        - put: resource-slack-alert
+          params:
+            channel: '#jeff-builds'
+            text: "From RESTful-API-test: PASSED job-unit-tests in concourse ci."
+        - put: resource-repo-status
+          params: { state: "pending", description: "PASSED job-unit-tests in concourse ci", commit: "RESTful-API-test" }
+      on_failure:
+        do:
+        - put: resource-slack-alert
+          params:
+            channel: '#jeff-builds'
+            text: "From RESTful-API-test: FAILED job-unit-tests in concourse ci."
+        - put: resource-repo-status
+          params: { state: "failure", description: "FAILED job-unit-tests in concourse ci.", commit: "RESTful-API-test" }
 
 resource_types:
-  - name: slack-notification
-    type: docker-image
-    source:
-      repository: cfcommunity/slack-notification-resource
-      tag: latest
-  - name: github-status
-    type: docker-image
-    source:
-      repository: dpb587/github-status-resource
-      tag: master
-  - name: jeffs-resource
-    type: docker-image
-    source:
-      repository: jeffdecola/resource-template
-      tag: latest
+- name: slack-notification
+  type: docker-image
+  source:
+    repository: cfcommunity/slack-notification-resource
+    tag: latest
+- name: github-status
+  type: docker-image
+  source:
+    repository: dpb587/github-status-resource
+    tag: master
+- name: jeffs-resource
+  type: docker-image
+  source:
+   repository: jeffdecola/resource-template
+   tag: latest
 
 resources:
-  - name: RESTful-API-test
-    type: git
-    source:
-      uri: https://github.com/jeffdecola/RESTful-API-test
-      branch: master
-  - name: resource-slack-alert
-    type: slack-notification
-    source:
-      url: {{slack_url}} 
-  - name: resource-repo-status 
-    type: github-status
-    source:
-      repository: jeffdecola/RESTful-API-test 
-      access_token: {{repo_github_token}}
-  - name: resource-jeffs-template
-    type: jeffs-resource
+- name: RESTful-API-test
+  type: git
+  source:
+    uri: https://github.com/jeffdecola/RESTful-API-test
+    branch: master
+- name: resource-slack-alert
+  type: slack-notification
+  source:
+    url: {{slack_url}} 
+- name: resource-repo-status 
+  type: github-status
+  source:
+    repository: jeffdecola/RESTful-API-test 
+    access_token: {{repo_github_token}}
+- name: resource-template
+  type: jeffs-resource
 
 
 
