@@ -60,9 +60,10 @@ fly -t ci set-pipeline -p RESTful-API-test -c ci/pipeline.yml --load-vars-from c
 
 As seen in the pipeline diagram,`RESTful-API-test` also contains a few extra concourse resources:
 
-* A resource (_resource-slack-alert_) that will notify slack on your progress.
-* A resource (_resource-repo-status_) that will update your git status for that
-  particular commit.
+* A resource (_resource-slack-alert_) uses a [docker image](https://hub.docker.com/r/cfcommunity/slack-notification-resource)
+  that will notify slack on your progress.
+* A resource (_resource-repo-status_) use a [docker image](https://hub.docker.com/r/dpb587/github-status-resource)
+  that will update your git status for that particular commit.
 * A resource ([_`resource-template`_](https://github.com/JeffDeCola/resource-template))
   that can be used as a starting point and template for creating other concourse
   ci resources.
