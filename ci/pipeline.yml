@@ -14,7 +14,7 @@ jobs:
     - task: task-unit-tests
       file: RESTful-API-test/ci/tasks/task-unit-tests.yml
     - put: resource-template
-      params: { text: "hello-jeff" }
+      params: { param1: "hello jeff", param2: "How are you?" }
       on_success:
         do:
         - put: resource-slack-alert
@@ -67,8 +67,8 @@ resources:
 - name: resource-template
   type: jeffs-resource
   source:
-    repository: foo/bar 
-    access_token: footoken
+    source1: sourcefoo1 
+    source1: sourcefoo2
 
 
 
