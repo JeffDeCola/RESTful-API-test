@@ -15,8 +15,6 @@ jobs:
       params: { state: "pending", description: "STARTED job-unit-tests in concourse ci.", commit: "RESTful-API-test" }
     - task: task-unit-tests
       file: RESTful-API-test/ci/tasks/task-unit-tests.yml
-    - put: resource-template
-      params: { param1: "Hello Jeff", param2: "How are you?" }
       on_success:
         do:
         - put: resource-slack-alert
