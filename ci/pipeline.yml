@@ -5,6 +5,8 @@ jobs:
   plan:
     - get: RESTful-API-test
       trigger: true
+    - get: resource-template
+      params: { param1: "Hello Clif", param2: "Nice to meet you" }
     - put: resource-slack-alert
       params:
         channel: '#jeff-builds'
@@ -14,7 +16,7 @@ jobs:
     - task: task-unit-tests
       file: RESTful-API-test/ci/tasks/task-unit-tests.yml
     - put: resource-template
-      params: { param1: "hello jeff", param2: "How are you?" }
+      params: { param1: "Hello Jeff", param2: "How are you?" }
       on_success:
         do:
         - put: resource-slack-alert
