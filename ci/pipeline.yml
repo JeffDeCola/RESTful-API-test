@@ -1,6 +1,18 @@
 # RESTful-API-test pipeline.yml
 
 jobs:
+
+- name: job-readme-github-pages
+  plan:
+  - get: RESTful-API-test
+    trigger: true
+  - task: task-readme-github-pages
+    file: RESTful-API-test/ci/tasks/task-readme-github-pages.yml
+  - put: RESTful-API-test
+    params:
+      repository: RESTful-API-test-updated
+
+jobs:
 - name: job-unit-tests
   plan:
     - get: RESTful-API-test
@@ -55,6 +67,7 @@ resources:
   source:
     uri: https://github.com/jeffdecola/RESTful-API-test
     branch: master
+    private_key: {{git_private_key}}
 - name: resource-slack-alert
   type: slack-notification
   source:
@@ -69,6 +82,3 @@ resources:
   source:
     source1: sourcefoo1 
     source2: sourcefoo2
-
-
-
