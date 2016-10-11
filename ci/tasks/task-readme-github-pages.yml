@@ -1,4 +1,4 @@
-# hello-go task-readme-github-pages.yml
+# RESTful-API-test task-readme-github-pages.yml
 
 platform: linux
 
@@ -9,10 +9,10 @@ image_resource:
     tag: 1.7.1
 
 inputs:
-- name: hello-go
+- name: RESTful-API-test
 
 outputs:
-- name: hello-go-updated
+- name: RESTful-API-test-updated
 
 run:
-  path: ./hello-go/ci/scripts/readme-github-pages.sh
+  path: ./RESTful-API-test/ci/scripts/readme-github-pages.sh

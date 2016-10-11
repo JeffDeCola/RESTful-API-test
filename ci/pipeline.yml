@@ -12,7 +12,6 @@ jobs:
     params:
       repository: RESTful-API-test-updated
 
-jobs:
 - name: job-unit-tests
   plan:
     - get: RESTful-API-test
