@@ -10,7 +10,7 @@
 `RESTful-API-test` is a very limited RESTful API in which you can GET
 and POST data from a database via a CLI http client.
 
-[GitHub Webpage](https://jeffdecola.github.io/hello-go/)
+[GitHub Webpage](https://jeffdecola.github.io/RESTful-API-test/)
 
 ## ORIGINAL SOURCE
 
