@@ -25,3 +25,4 @@ _testmain.go
 .credentials.yml
 coverage.out
 db.sqlite3
+/docs/_site/

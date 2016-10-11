@@ -46,7 +46,7 @@ http localhost:8000/articles/1
 
 To automate unit_testing, a concourse ci pipeline is used.
 
-![IMAGE - hello-go concourse ci piepline - IMAGE](docs/RESTful-API-test-pipeline.jpg)
+![IMAGE - hello-go concourse ci piepline - IMAGE](docs/pics/RESTful-API-test-pipeline.jpg)
 
 A _/ci/.credentials_ file needs to be created for your _slack_url_ and _repo_github_token_.
 
