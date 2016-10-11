@@ -16,7 +16,7 @@ and POST data from a database via a CLI http client.
 
 Written in go using gin &amp; gorp.
 
-Original go code from https://github.com/phalt
+Original go code from [phalt](https://github.com/phalt).
 
 ## RUN
 
