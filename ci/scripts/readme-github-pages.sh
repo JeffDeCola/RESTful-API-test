@@ -1,17 +1,17 @@
 #!/bin/bash
-# hello-go readme-github-pages.sh
+# RESTful-API-test readme-github-pages.sh
 
 set -e -x
 
-# The code is located in /hello-go
+# The code is located in /RESTful-API-test
 echo "pwd is: " $PWD
 echo "List whats in the current directory"
 ls -lat 
 
-# Note: hello-go-updated already created becasue of yml file
-git clone hello-go hello-go-updated
+# Note: RESTful-API-test-updated already created becasue of yml file
+git clone RESTful-API-test RESTful-API-test-updated
 
-cd hello-go-updated
+cd RESTful-API-test-updated
 ls -lat 
 
 # FOR GITHUB WEBPAGES
