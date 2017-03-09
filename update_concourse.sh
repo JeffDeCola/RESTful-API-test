@@ -1,4 +1,4 @@
 #!/bin/bash
 # RESTful-API-test update_concourse.sh
 
-fly -t ci set-pipeline -p hello-go -c ci/pipeline.yml --load-vars-from ci/.credentials.yml
+fly -t ci set-pipeline -p RESTful-API-test -c ci/pipeline.yml --load-vars-from ci/.credentials.yml

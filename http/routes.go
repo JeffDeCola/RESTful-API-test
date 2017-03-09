@@ -19,14 +19,17 @@ type Article struct {
 	Content string
 }
 
+// App is the APP
 type App struct {
 	db *gorp.DbMap
 }
 
+// NewApp is the NEW APP
 func NewApp(db *gorp.DbMap) *App {
 	return &App{db: db}
 }
 
+// createArticle the articles
 func (a *App) createArticle(title, body string) Article {
 	article := Article{
 		Created: time.Now().UnixNano(),
@@ -39,6 +42,7 @@ func (a *App) createArticle(title, body string) Article {
 	return article
 }
 
+// getArticle the articles
 func (a *App) getArticle(article_id int) Article {
 	article := Article{}
 	err := a.db.SelectOne(&article, "select * from articles where article_id=?", article_id)
@@ -46,6 +50,7 @@ func (a *App) getArticle(article_id int) Article {
 	return article
 }
 
+// ArticlesList lists the articles
 func (a *App) ArticlesList(c *gin.Context) {
 	var articles []Article
 	_, err := a.db.Select(&articles, "select * from articles order by article_id")
@@ -57,6 +62,7 @@ func (a *App) ArticlesList(c *gin.Context) {
 	c.JSON(200, content)
 }
 
+// ArticlesDetail shows the article details
 func (a *App) ArticlesDetail(c *gin.Context) {
 	article_id := c.Params.ByName("id")
 	a_id, _ := strconv.Atoi(article_id)
@@ -65,6 +71,7 @@ func (a *App) ArticlesDetail(c *gin.Context) {
 	c.JSON(200, content)
 }
 
+// ArticlePost posts and article
 func (a *App) ArticlePost(c *gin.Context) {
 	var json Article
 
@@ -82,7 +89,7 @@ func (a *App) ArticlePost(c *gin.Context) {
 	}
 }
 
-// CREATE A DATABASE
+// InitDb CREATE A DATABASE
 func InitDb() *gorp.DbMap {
 	db, err := sql.Open("sqlite3", "db.sqlite3")
 	checkErr(err, "sql.Open failed")
