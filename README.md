@@ -26,21 +26,22 @@ From Command line
 go run main.go
 ```
 
-In another terminal, use a CLI http client like httpie and you can do the following commands:
+In another terminal, use a CLI http client like httpie and you can do the
+following commands:
 
-**Create New Article**
+### Create New Article
 
 ```bash
 http POST localhost:8000/articles title="A simple RESTful-API-test" content="Hello-World"
 ```
 
-**Query Entry List - Returns all articles in the list**
+### Query Entry List - Returns all articles in the list
 
 ```bash
 http localhost:8000/articles
 ```
 
-**Query Single Resource - Get back single article via it's id**
+### Query Single Resource - Get back single article via it's id
 
 ```bash
 http localhost:8000/articles/1
@@ -62,7 +63,8 @@ fly -t ci set-pipeline -p RESTful-API-test -c ci/pipeline.yml --load-vars-from c
 
 ## CONCOURSE RESOURCES IN PIPELINE
 
-As seen in the pipeline diagram,`RESTful-API-test` also contains a few extra concourse resources:
+As seen in the pipeline diagram,`RESTful-API-test` also contains a few extra concourse
+resources:
 
 * A resource (_resource-slack-alert_) uses a [docker image](https://hub.docker.com/r/cfcommunity/slack-notification-resource)
   that will notify slack on your progress.
