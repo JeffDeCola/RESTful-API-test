@@ -26,3 +26,4 @@ _testmain.go
 coverage.out
 db.sqlite3
 /docs/_site/
+/docs/_includes/README.md
