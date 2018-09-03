@@ -6,44 +6,72 @@ jobs:
   plan:
   - get: RESTful-API-test
     trigger: true
+  - put: resource-slack-alert
+    params:
+      channel: '#jeff-builds'
+      text: "From RESTful-API-test: STARTED job-readme-github-pages in concourse ci."
+  - put: resource-repo-status
+    params: { state: "pending", description: "STARTED job-readme-github-pages in concourse ci.", commit: "RESTful-API-test" }
   - task: task-readme-github-pages
     file: RESTful-API-test/ci/tasks/task-readme-github-pages.yml
-  - put: RESTful-API-test
-    params:
-      repository: RESTful-API-test-updated
+    on_success:
+      do:
+      - put: RESTful-API-test
+        params:
+          repository: RESTful-API-test-updated  
+      - put: resource-slack-alert
+        params:
+          channel: '#jeff-builds'
+          text: "From RESTful-API-test: PASSED job-readme-github-pages in concourse ci."
+      - put: resource-repo-status
+        params: { state: "success", description: "PASSED job-readme-github-pages in concourse ci", commit: "RESTful-API-test" }
+    on_failure:
+      do:
+      - put: resource-slack-alert
+        params:
+          channel: '#jeff-builds'
+          text: "From RESTful-API-test: FAILED job-readme-github-pages in concourse ci."
+      - put: resource-repo-status
+        params: { state: "failure", description: "FAILED job-readme-github-pages in concourse ci", commit: "RESTful-API-test" }
 
 - name: job-unit-tests
   plan:
-    - get: RESTful-API-test
-      trigger: true
-    - get: resource-template
-      params: { param1: "Hello Clif", param2: "Nice to meet you" }
-    - put: resource-slack-alert
-      params:
-        channel: '#jeff-builds'
-        text: "From RESTful-API-test: STARTED job-unit-tests in concourse ci."
-    - put: resource-repo-status
-      params: { state: "pending", description: "STARTED job-unit-tests in concourse ci.", commit: "RESTful-API-test" }
-    - task: task-unit-tests
-      file: RESTful-API-test/ci/tasks/task-unit-tests.yml
-      on_success:
-        do:
-        - put: resource-slack-alert
-          params:
-            channel: '#jeff-builds'
-            text: "From RESTful-API-test: PASSED job-unit-tests in concourse ci."
-        - put: resource-repo-status
-          params: { state: "success", description: "PASSED job-unit-tests in concourse ci", commit: "RESTful-API-test" }
-      on_failure:
-        do:
-        - put: resource-slack-alert
-          params:
-            channel: '#jeff-builds'
-            text: "From RESTful-API-test: FAILED job-unit-tests in concourse ci."
-        - put: resource-repo-status
-          params: { state: "failure", description: "FAILED job-unit-tests in concourse ci.", commit: "RESTful-API-test" }
+  - get: RESTful-API-test
+    trigger: true
+    passed: [job-readme-github-pages]
+  - put: resource-slack-alert
+    params:
+      channel: '#jeff-builds'
+      text: "From RESTful-API-test: STARTED job-unit-tests in concourse ci."
+  - put: resource-repo-status
+    params: { state: "pending", description: "STARTED job-unit-tests in concourse ci.", commit: "RESTful-API-test" }
+  - task: task-unit-tests
+    file: RESTful-API-test/ci/tasks/task-unit-tests.yml
+    on_success:
+      do:
+      - put: RESTful-API-test
+        params:
+          repository: RESTful-API-test  
+      - put: resource-slack-alert
+        params:
+          channel: '#jeff-builds'
+          text_file: coverage-results/test_coverage.txt
+          text: |
+            From RESTful-API-test: PASSED job-unit-tests in concourse ci. 
+            $TEXT_FILE_CONTENT
+      - put: resource-repo-status
+        params: { state: "success", description: "PASSED job-unit-tests in concourse ci", commit: "RESTful-API-test" }
+    on_failure:
+      do:
+      - put: resource-slack-alert
+        params:
+          channel: '#jeff-builds'
+          text: "From RESTful-API-test: FAILED job-unit-tests in concourse ci."
+      - put: resource-repo-status
+        params: { state: "failure", description: "FAILED job-unit-tests in concourse ci.", commit: "RESTful-API-test" }
 
 resource_types:
+
 - name: slack-notification
   type: docker-image
   source:
@@ -54,13 +82,9 @@ resource_types:
   source:
     repository: dpb587/github-status-resource
     tag: master
-- name: jeffs-resource
-  type: docker-image
-  source:
-   repository: jeffdecola/resource-template
-   tag: latest
 
 resources:
+
 - name: RESTful-API-test
   type: git
   source:
@@ -77,8 +101,3 @@ resources:
   source:
     repository: jeffdecola/RESTful-API-test 
     access_token: {{repo_github_token}}
-- name: resource-template
-  type: jeffs-resource
-  source:
-    source1: sourcefoo1 
-    source2: sourcefoo2
