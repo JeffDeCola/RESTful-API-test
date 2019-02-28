@@ -1,10 +1,10 @@
 # RESTful-API-test
 
-[![Code Climate](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/badges/gpa.svg)](https://codeclimate.com/github/JeffDeCola/RESTful-API-test)
-[![Issue Count](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/badges/issue_count.svg)](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/issues)
-[![Go Report Card](https://goreportcard.com/badge/jeffdecola/RESTful-API-test)](https://goreportcard.com/report/jeffdecola/RESTful-API-test)
+[![Go Report Card](https://goreportcard.com/badge/github.com/JeffDeCola/RESTful-API-test)](https://goreportcard.com/report/github.com/JeffDeCola/RESTful-API-test)
 [![GoDoc](https://godoc.org/github.com/JeffDeCola/RESTful-API-test?status.svg)](https://godoc.org/github.com/JeffDeCola/RESTful-API-test)
-[![License](http://img.shields.io/:license-mit-blue.svg)](http://jeffdecola.mit-license.org)
+[![Maintainability](https://api.codeclimate.com/v1/badges/57a79ec6bf13f735c4bf/maintainability)](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/maintainability)
+[![Issue Count](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/badges/issue_count.svg)](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/issues)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://jeffdecola.mit-license.org
 
 `RESTful-API-test` is a very limited RESTful API in which you can GET
 and POST data from a database via a CLI http client.
@@ -49,8 +49,8 @@ http localhost:8000/articles/1
 ## UNIT TESTING AND MY GITHUB WEBPAGE IS UPDATED USING CONCOURSE
 
 For fun, I use concourse to automate unit testing, update
-[RESTful-API-test GitHub Webpage](https://jeffdecola.github.io/RESTful-API-test/) and alert me of
-the changes via repo status and slack.
+[RESTful-API-test GitHub Webpage](https://jeffdecola.github.io/RESTful-API-test/)
+and alert me of the changes via repo status and slack.
 
 The unit testing is accomplished by running this script this script
 [here](https://github.com/JeffDeCola/RESTful-API-test/tree/master/ci/scripts/unit-tests.sh).
