@@ -15,8 +15,8 @@ mkdir -p src/github.com/JeffDeCola/
 cp -R ./RESTful-API-test src/github.com/JeffDeCola/.
 
 # All set and everything is in the right place for go
-echo "Gopath is: " $GOPATH
-echo "pwd is: " $PWD
+echo "Gopath is: $GOPATH"
+echo "pwd is: $PWD"
 cd src/github.com/JeffDeCola/RESTful-API-test
 
 # RUN unit_tests
