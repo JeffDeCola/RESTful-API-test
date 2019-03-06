@@ -37,8 +37,8 @@ http localhost:8000/articles/1
 ## UNIT TESTING AND MY GITHUB WEBPAGE IS UPDATED USING CONCOURSE
 
 For fun, I use concourse to automate unit testing, update
-[RESTful-API-test GitHub Webpage](https://jeffdecola.github.io/RESTful-API-test/) and alert me of
-the changes via repo status and slack.
+[RESTful-API-test GitHub Webpage](https://jeffdecola.github.io/RESTful-API-test/)
+and alert me of the changes via repo status and slack.
 
 The unit testing is accomplished by running this script this script
 [here](https://github.com/JeffDeCola/RESTful-API-test/tree/master/ci/scripts/unit-tests.sh).
