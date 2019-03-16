@@ -9,5 +9,9 @@ image_resource:
 inputs:
 - name: RESTful-API-test
 
+outputs:
+- name: coverage-results
+
 run:
   path: ./RESTful-API-test/ci/scripts/unit-tests.sh
+    # args: [-debug]
