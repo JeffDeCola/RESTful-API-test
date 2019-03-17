@@ -1,5 +1,5 @@
 #!/bin/sh
-#RESTful-API-test readme-github-pages.sh
+# RESTful-API-test readme-github-pages.sh
 
 echo " "
 
@@ -17,14 +17,14 @@ else
     echo " "
 fi
 
-echo "The goal is to git clone /my-php-containers to /my-php-containers-updated"
+echo "The goal is to git clone /RESTful-API-test to /RESTful-API-test-updated"
 echo "Then script will edit the /docs/_includes/README.md for GITHUB WEBPAGES"
 echo "Finally push the changes in /docs/_includes/README.md to github"
 echo " "
 
 echo "At start, you should be in a /tmp/build/xxxxx directory with two folders:"
-echo "   /my-php-containers"
-echo "   /my-php-containers-updated (created in task-build-push.yml task file)"
+echo "   /RESTful-API-test"
+echo "   /RESTful-API-test-updated (created in task-build-push.yml task file)"
 echo " "
 
 echo "pwd is: $PWD"
@@ -34,12 +34,12 @@ echo "List whats in the current directory"
 ls -la
 echo " "
 
-echo "git cloneRESTful-API-test toRESTful-API-test-updated"
-git cloneRESTful-API-testRESTful-API-test-updated
+echo "git clone RESTful-API-test to RESTful-API-test-updated"
+git clone RESTful-API-test RESTful-API-test-updated
 echo " "
 
-echo "cdRESTful-API-test-updated"
-cdRESTful-API-test-updated
+echo "cd RESTful-API-test-updated"
+cd RESTful-API-test-updated
 echo " "
 
 echo "List whats in the current directory"
