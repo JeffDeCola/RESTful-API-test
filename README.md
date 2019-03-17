@@ -4,7 +4,7 @@
 [![GoDoc](https://godoc.org/github.com/JeffDeCola/RESTful-API-test?status.svg)](https://godoc.org/github.com/JeffDeCola/RESTful-API-test)
 [![Maintainability](https://api.codeclimate.com/v1/badges/57a79ec6bf13f735c4bf/maintainability)](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/maintainability)
 [![Issue Count](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/badges/issue_count.svg)](https://codeclimate.com/github/JeffDeCola/RESTful-API-test/issues)
-[![License](http://img.shields.io/:license-mit-blue.svg)](http://jeffdecola.mit-license.org
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://jeffdecola.mit-license.org)
 
 `RESTful-API-test` is a very limited RESTful API in which you can GET
 and POST data from a database via a CLI http client.
