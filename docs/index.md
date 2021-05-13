@@ -6,5 +6,3 @@ summary: A very limited RESTful API in which you can GET and POST data from a da
 ---
 
 {% include README.md %}
-
-
